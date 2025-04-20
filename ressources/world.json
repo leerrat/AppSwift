@@ -1,0 +1,40 @@
+{
+    "start": {
+      "id": "start",
+      "name": "Salle de départ",
+      "description": "Tu es dans une salle sombre avec une porte au nord.",
+      "exits": {
+        "nord": "hall"
+      },
+      "items": ["clef"]
+    },
+    "hall": {
+      "id": "hall",
+      "name": "Grand Hall",
+      "description": "Un grand hall avec des torches allumées. Une sortie mène au sud et une autre à l’est.",
+      "exits": {
+        "sud": "start",
+        "est": "bibliotheque"
+      },
+      "items": []
+    },
+    "bibliotheque": {
+      "id": "bibliotheque",
+      "name": "Bibliothèque",
+      "description": "Une bibliothèque remplie de vieux livres. Une sortie vers l’ouest.",
+      "exits": {
+        "ouest": "hall"
+      },
+      "items": []
+    },
+    "cave": {
+    "id": "cave",
+    "name": "Cave secrète",
+    "description": "Une pièce sombre et froide contenant un mystérieux coffre.",
+    "exits": {
+        "ouest": "bibliotheque"
+    },
+    "items": []
+    }
+  }
+  

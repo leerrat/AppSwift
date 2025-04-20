@@ -1,0 +1,40 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:Swift}",
+            "name": "Debug Swift",
+            "program": "${workspaceFolder:Swift}/.build/debug/Swift",
+            "preLaunchTask": "swift: Build Debug Swift"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:Swift}",
+            "name": "Release Swift",
+            "program": "${workspaceFolder:Swift}/.build/release/Swift",
+            "preLaunchTask": "swift: Build Release Swift"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:AppSwift}",
+            "name": "Debug AppSwift",
+            "program": "${workspaceFolder:AppSwift}/.build/debug/AppSwift",
+            "preLaunchTask": "swift: Build Debug AppSwift"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:AppSwift}",
+            "name": "Release AppSwift",
+            "program": "${workspaceFolder:AppSwift}/.build/release/AppSwift",
+            "preLaunchTask": "swift: Build Release AppSwift"
+        }
+    ]
+}
