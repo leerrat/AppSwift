@@ -6,4 +6,5 @@ struct Room: Codable {
     let description: String
     var exits: [String: String]
     var items: [String]
+    var characters: [String]?
 }
