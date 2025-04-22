@@ -4,6 +4,8 @@ class Game {
     var player: Player
     var characters: [String: Character] = [:]
     var rooms: [String: Room] = [:]
+    var visitedRooms: Set<String> = []
+
 
     init(playerName: String) {
         self.player = Player(name: playerName, currentRoom: "start", inventory: [])
@@ -37,6 +39,7 @@ class Game {
 
     func start() {
         print("\nBienvenue, \(player.name) !\n")
+        visitedRooms.insert(player.currentRoom)
         loop()
     }
 
@@ -59,8 +62,19 @@ class Game {
         print("Objets ici : \(room.items.joined(separator: ", "))")
     }
     if !room.exits.isEmpty {
-        print("Sorties : \(room.exits.keys.joined(separator: ", "))")
+    var sortiesAffichees: [String] = []
+
+    for (direction, destinationID) in room.exits {
+        if visitedRooms.contains(destinationID) {
+            sortiesAffichees.append(destinationID)
+        } else {
+            sortiesAffichees.append(direction)
+        }
     }
+
+    print("Sorties : \(sortiesAffichees.joined(separator: ", "))")
+}
+
     if let characterIDs = room.characters, !characterIDs.isEmpty {
         let noms = characterIDs.compactMap { characters[$0]?.name }
         if !noms.isEmpty {
@@ -148,12 +162,17 @@ class Game {
         return
     }
 
+    if visitedRooms.contains(trimmedInput),
+    rooms.keys.contains(trimmedInput) {1
+        player.currentRoom = trimmedInput
+        return
+    }
+
     if let foundItem = room.items.first(where: { $0.lowercased() == trimmedInput }) {
         take(item: foundItem)
         return
     }
 
-    
     if let personnages = room.characters {
     if let found = personnages.first(where: { $0.lowercased() == trimmedInput }),
        let pnj = characters[found] {
@@ -172,8 +191,19 @@ class Game {
             print("Commande invalide.")
         }
         return
+        }
     }
+
+    if player.currentRoom == "repaire_du_dragon",
+    trimmedInput == "seringue",
+    let index = player.inventory.firstIndex(where: { $0.lowercased() == "seringue" }) {
+
+        player.inventory.remove(at: index)
+        player.inventory.append("sang de dragon")
+        print("💉 Tu prélèves avec précaution un peu de sang de dragon encore chaud... Tu obtiens du sang de dragon.")
+        return
     }
+
 
     switch trimmedInput {
     case "inventaire":
@@ -192,12 +222,15 @@ class Game {
 
     func move(direction: String) {
         guard let currentRoom = rooms[player.currentRoom],
-              let nextRoomID = currentRoom.exits[direction] else {
+            let nextRoomID = currentRoom.exits[direction] else {
             print("Impossible d'aller dans cette direction.")
             return
         }
+
         player.currentRoom = nextRoomID
+        visitedRooms.insert(nextRoomID)
     }
+
 
     func take(item: String) {
         guard var room = rooms[player.currentRoom] else {
@@ -227,7 +260,7 @@ class Game {
     }
 
     func eventTemple() {
-    let requiredItems = ["clef dorée", "artefact ancien", "sang de dragon"]
+    let requiredItems = ["clef d'or", "artefact ancien", "sang de dragon"]
     let inventoryLowercased = player.inventory.map { $0.lowercased() }
 
     let hasAllItems = requiredItems.allSatisfy { required in
@@ -235,9 +268,9 @@ class Game {
     }
 
     if hasAllItems {
-        print("\n🏆 L’autel s’illumine alors que tu poses les objets sacrés...")
-        print("✨ Une lumière t’enveloppe... Tu as accompli ta quête. Fin du jeu.")
-        print("🎉 Bravo \(player.name) ! Tu as triomphé du Jeu d’Aventure Textuel !")
+        print("\nL’autel s’illumine alors que tu poses les objets sacrés...")
+        print("Une lumière t’enveloppe... Tu as accompli ta quête. Fin du jeu.")
+        print("bravo \(player.name) ! Tu as triomphé du Jeu d’Aventure Textuel !")
         exit(0)
     } else {
         print("\nTu sens une force invisible te repousser.")
@@ -249,14 +282,15 @@ class Game {
     guard let room = rooms["chapelle"], !room.exits.keys.contains("est") else { return }
 
     print("\nUne voix résonne dans la chapelle :")
-    print("« Je n’ai pas de bouche mais je réponds toujours. Qui suis-je ?»")
+    print("«Je n’ai pas de bouche mais je réponds toujours. Qui suis-je ?»")
     print("> ", terminator: "")
+    
     if let reponse = readLine()?.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) {
-        if reponse == "echo" {
+        if reponse == "echo" || reponse == "écho" {
             rooms["chapelle"]?.exits["est"] = "temple"
             print("Une porte cachée s’ouvre vers l’est...")
         } else {
-            print("Mauvaise réponse. Le silence revient.")
+            print("Mauvaise réponse. Le silence revient...")
         }
     }
     }

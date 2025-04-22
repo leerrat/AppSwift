@@ -1,46 +1,67 @@
 {
-    "marchand": {
-      "id": "marchand",
-      "name": "Marchand",
-      "message": "Je peux échanger une corde contre un secret... ou peut-être rien du tout.",
-      "options": [
-        {
-          "texte": "Lui donner une corde",
-          "reponse": "Voici ton secret... la clef dorée est cachée dans le donjon.",
-          "condition": "corde",
-          "action": "retirer:corde"
-        },
-        {
-          "texte": "Comment vous appelez-vous ?",
-          "reponse": "Je suis le Marchand étrange, comme on m’appelle dans ces terres."
-        },
-        {
-          "texte": "Où suis-je ?",
-          "reponse": "Tu es à l'Entrepôt en ruines, un endroit peu fréquenté."
-        }
-      ]
+  "marchand": {
+    "id": "marchand",
+    "name": "Marchand étrange",
+    "message": "Je peux échanger une corde contre un secret... ou peut-être rien du tout.",
+    "options": [
+      {
+        "texte": "Lui donner une corde",
+        "reponse": "Voici ton secret... la clef d'or est cachée dans une cave sombre.",
+        "condition": "corde",
+        "action": "retirer:corde"
+      },
+      {
+        "texte": "Comment vous appelez-vous ?",
+        "reponse": "Je suis le Marchand étrange, comme on m’appelle dans ces terres."
+      },
+      {
+        "texte": "Où suis-je ?",
+        "reponse": "Tu es à l'Entrepôt en ruines, un endroit peu fréquenté à l’ouest du jardin."
+      }
+    ]
+  },
+
+  "moine": {
+    "id": "moine",
+    "name": "Moine silencieux",
+    "message": "La chapelle cache plus qu’elle ne montre. Observe les murs...",
+    "options": [
+      {
+        "texte": "Lui donner un bol de riz",
+        "reponse": "Merci... Que la paix t’accompagne. On dit qu’un artefact ancien repose dans la tour.",
+        "condition": "bol de riz",
+        "action": "retirer:bol de riz"
+      },
+      {
+        "texte": "Comment vous appelez-vous ?",
+        "reponse": "Je suis un simple moine en quête d’illumination."
+      },
+      {
+        "texte": "Où suis-je ?",
+        "reponse": "Dans le jardin abandonné. Au nord tu trouveras le donjon, et au sud la cuisine."
+      }
+    ]
+  },
+
+  "cuisinier": {
+    "id": "cuisinier",
+    "name": "Cuisinier grincheux",
+    "message": "Tu veux une recette ? Ramène-moi quelque chose de frais, pas ces trucs moisis.",
+    "options": [
+      {
+        "texte": "Lui donner un morceau de viande",
+        "reponse": "Parfait ! Tiens, prends ce bol de riz bien chaud.",
+        "condition": "morceau de viande",
+        "action": "retirer:morceau de viande;ajouter:bol de riz"
+      },
+      {
+        "texte": "Comment vous appelez-vous ?",
+        "reponse": "On m'appelle Maître de la Marmite. Pas très classe, je sais."
+      },
+      {
+        "texte": "Où suis-je ?",
+        "reponse": "Dans l’ancienne cuisine. Tu peux repartir au nord vers le jardin."
+      }
+    ]
   }
-  ,
-    "moine": {
-      "id": "moine",
-      "name": "Moine",
-      "message": "La chapelle cache plus qu’elle ne montre. Observe les murs...",
-      "options": [
-        {
-          "texte": "Lui donner une corde",
-          "reponse": "Voici ton secret... la clef dorée est cachée dans le donjon.",
-          "condition": "corde",
-          "action": "retirer:corde"
-        },
-        {
-          "texte": "Comment vous appelez-vous ?",
-          "reponse": "Je suis le Marchand étrange, comme on m’appelle dans ces terres."
-        },
-        {
-          "texte": "Où suis-je ?",
-          "reponse": "Tu es à l'Entrepôt en ruines, un endroit peu fréquenté."
-        }
-      ]
-    }
-  }
-  
+}

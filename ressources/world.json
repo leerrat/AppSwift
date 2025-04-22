@@ -6,54 +6,54 @@
     "exits": {
       "nord": "hall"
     },
-    "items": ["clef"]
-    ,"characters": []
+    "items": ["clef"],
+    "characters": []
   },
   "hall": {
     "id": "hall",
     "name": "Grand Hall",
-    "description": "Un grand hall avec des torches allumées. Une sortie mène au sud et une autre à l’est.",
+    "description": "Un grand hall avec des torches allumées.",
     "exits": {
       "sud": "start",
-      "est": "bibliotheque",
-      "nord": "tour",
-      "ouest": "donjon"
+      "nord": "donjon",
+      "est": "bibliotheque"
     },
-    "items": ["torche"]
-    ,"characters": ["marchand"]
+    "items": ["corde"],
+    "characters": []
   },
-  "bibliotheque": {
-    "id": "bibliotheque",
-    "name": "Bibliothèque",
-    "description": "Une bibliothèque remplie de vieux livres. Une sortie vers l’ouest.",
+  "donjon": {
+    "id": "donjon",
+    "name": "Donjon profond",
+    "description": "L’air est lourd et humide. Des chaînes rouillées pendent des murs.",
     "exits": {
+      "sud": "jardin",
       "ouest": "hall",
-      "sud": "cave",
-      "est": "chapelle"
+      "nord": "tour",
+      "est": "repaire_du_dragon"
     },
-    "items": ["grimoire"]
-    ,"characters": []
+    "items": [],
+    "characters": []
   },
-  "cave": {
-  "id": "cave",
-  "name": "Cave secrète",
-  "description": "Une pièce sombre et froide contenant un mystérieux coffre.",
-  "exits": {
-      "ouest": "bibliotheque"
+  "tour": {
+    "id": "tour",
+    "name": "Tour en ruine",
+    "description": "Une tour étroite et ancienne, avec une vue sur les terres oubliées.",
+    "exits": {
+      "sud": "donjon"
+    },
+    "items": ["artefact ancien"],
+    "characters": []
   },
-  "items": ["dague"]
-  ,"characters": []
-  }
-  ,
   "jardin": {
     "id": "jardin",
     "name": "Jardin abandonné",
     "description": "Un ancien jardin recouvert de mauvaises herbes. Un vieux puits trône au centre.",
     "exits": {
       "nord": "donjon",
-      "sud": "entrepot"
+      "sud": "cuisine",
+      "ouest": "entrepot"
     },
-    "items": [],
+    "items": ["morceau de viande"],
     "characters": ["moine"]
   },
   "entrepot": {
@@ -61,31 +61,42 @@
     "name": "Entrepôt en ruines",
     "description": "Des caisses renversées, des tonneaux vides... peut-être qu’un objet utile traîne ici.",
     "exits": {
+      "est": "jardin"
+    },
+    "items": [],
+    "characters": ["marchand"]
+  },
+  "cuisine": {
+    "id": "cuisine",
+    "name": "Ancienne Cuisine",
+    "description": "Des casseroles rouillées, un feu éteint depuis longtemps... et une odeur étrange.",
+    "exits": {
       "nord": "jardin"
     },
-    "items": ["corde"]
-    ,"characters": []
+    "items": ["seringue"],
+    "characters": ["cuisinier"]
   },
-  "tour": {
-    "id": "tour",
-    "name": "Tour en ruine",
-    "description": "Une tour étroite et ancienne, avec une vue sur les terres oubliées.",
+  "bibliotheque": {
+    "id": "bibliotheque",
+    "name": "Bibliothèque",
+    "description": "Une bibliothèque remplie de vieux livres.",
     "exits": {
-      "sud": "hall"
+      "ouest": "hall",
+      "est": "chapelle",
+      "sud": "cave"
     },
-    "items": []
-    ,"characters": []
+    "items": ["grimoire"],
+    "characters": []
   },
-  "donjon": {
-    "id": "donjon",
-    "name": "Donjon profond",
-    "description": "L’air est lourd et humide. Des chaînes rouillées pendent des murs.",
+  "cave": {
+    "id": "cave",
+    "name": "Cave secrète",
+    "description": "Une pièce sombre et froide contenant un mystérieux coffre.",
     "exits": {
-      "est": "hall",
-      "sud": "jardin"
+      "nord": "bibliotheque"
     },
-    "items": []
-    ,"characters": []
+    "items": ["clef d'or"],
+    "characters": []
   },
   "chapelle": {
     "id": "chapelle",
@@ -94,17 +105,28 @@
     "exits": {
       "ouest": "bibliotheque"
     },
-    "items": []
-    ,"characters": []
+    "items": [],
+    "characters": []
   },
   "temple": {
     "id": "temple",
     "name": "Temple des Anciens",
     "description": "Une salle ancienne baignée de lumière. Un autel attend les artefacts du héros.",
     "exits": {
-      "ouest": "chapelle"
+      "est": "chapelle"
     },
-    "items": []
-  }
-  
+    "items": [],
+    "characters": []
+  },
+  "repaire_du_dragon": {
+  "id": "repaire",
+  "name": "Repaire du Dragon",
+  "description": "Un vaste gouffre effondré, encore fumant. Le cadavre calciné d’un dragon repose là, gigantesque et silencieux.",
+  "exits": {
+    "ouest": "donjon"
+  },
+  "items": [],
+  "characters": []
+}
+
 }
