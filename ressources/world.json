@@ -96,5 +96,15 @@
     },
     "items": []
     ,"characters": []
+  },
+  "temple": {
+    "id": "temple",
+    "name": "Temple des Anciens",
+    "description": "Une salle ancienne baignée de lumière. Un autel attend les artefacts du héros.",
+    "exits": {
+      "ouest": "chapelle"
+    },
+    "items": []
   }
+  
 }

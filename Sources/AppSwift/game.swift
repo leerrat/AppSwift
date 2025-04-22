@@ -77,6 +77,10 @@ class Game {
             eventBibliotheque()
         case "cave":
             eventCave()
+        case "temple":
+            eventTemple()
+        case "chapelle":
+            eventChapelle()
         default:
             break
         }
@@ -222,6 +226,39 @@ class Game {
         }
     }
 
-    
+    func eventTemple() {
+    let requiredItems = ["clef dorée", "artefact ancien", "sang de dragon"]
+    let inventoryLowercased = player.inventory.map { $0.lowercased() }
+
+    let hasAllItems = requiredItems.allSatisfy { required in
+        inventoryLowercased.contains(required.lowercased())
+    }
+
+    if hasAllItems {
+        print("\n🏆 L’autel s’illumine alors que tu poses les objets sacrés...")
+        print("✨ Une lumière t’enveloppe... Tu as accompli ta quête. Fin du jeu.")
+        print("🎉 Bravo \(player.name) ! Tu as triomphé du Jeu d’Aventure Textuel !")
+        exit(0)
+    } else {
+        print("\nTu sens une force invisible te repousser.")
+        print("Il te manque encore des objets pour activer l’autel sacré.")
+    }
+    }
+
+    func eventChapelle() {
+    guard let room = rooms["chapelle"], !room.exits.keys.contains("est") else { return }
+
+    print("\nUne voix résonne dans la chapelle :")
+    print("« Je n’ai pas de bouche mais je réponds toujours. Qui suis-je ?»")
+    print("> ", terminator: "")
+    if let reponse = readLine()?.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) {
+        if reponse == "echo" {
+            rooms["chapelle"]?.exits["est"] = "temple"
+            print("Une porte cachée s’ouvre vers l’est...")
+        } else {
+            print("Mauvaise réponse. Le silence revient.")
+        }
+    }
+    }
 
 }
