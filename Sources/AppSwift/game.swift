@@ -39,6 +39,7 @@ class Game {
 
     func start() {
         print("\nBienvenue, \(player.name) !\n")
+        print("Réunis tous les objets magiques pour devenir le maître des lieux !!!\n")
         visitedRooms.insert(player.currentRoom)
         loop()
     }
