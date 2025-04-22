@@ -1,0 +1,1 @@
+pour lancer le jeu il faut faire CTRL+SHIFT+B pour lancer tout les fichiers en même temps et pouvoir compiler, le but de jeu est de trouvez des objets, résoudre une énigmes et parler au pnj pour finir arriver au bouts de la map
