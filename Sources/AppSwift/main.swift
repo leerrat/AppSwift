@@ -6,7 +6,6 @@ print("2. Continuer la partie sauvegardée")
 print("Choix : ", terminator: "")
 
 if let choix = readLine(), choix == "2" {
-    // Charger la sauvegarde
     let savePath = FileManager.default.currentDirectoryPath + "/ressources/save.json"
     let url = URL(fileURLWithPath: savePath)
     do {
@@ -15,7 +14,7 @@ if let choix = readLine(), choix == "2" {
         let game = Game(joueur: joueurSauvegarde)
         game.start()
     } catch {
-        print("❌ Impossible de charger la sauvegarde. Démarrage d'une nouvelle partie.")
+        print("Impossible de charger la sauvegarde. Démarrage d'une nouvelle partie.")
         print("Entrez votre nom : ", terminator: "")
         if let name = readLine(), !name.isEmpty {
             let game = Game(playerName: name)

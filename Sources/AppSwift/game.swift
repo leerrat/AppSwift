@@ -95,6 +95,9 @@ class Game {
             eventTemple()
         case "chapelle":
             eventChapelle()
+        case "repaire_du_dragon":
+            eventDragon()
+
         default:
             break
         }
@@ -163,7 +166,7 @@ class Game {
     }
 
     if visitedRooms.contains(trimmedInput),
-    rooms.keys.contains(trimmedInput) {1
+    rooms.keys.contains(trimmedInput) {
         player.currentRoom = trimmedInput
         return
     }
@@ -193,17 +196,6 @@ class Game {
         return
         }
     }
-
-    if player.currentRoom == "repaire_du_dragon",
-    trimmedInput == "seringue",
-    let index = player.inventory.firstIndex(where: { $0.lowercased() == "seringue" }) {
-
-        player.inventory.remove(at: index)
-        player.inventory.append("sang de dragon")
-        print("💉 Tu prélèves avec précaution un peu de sang de dragon encore chaud... Tu obtiens du sang de dragon.")
-        return
-    }
-
 
     switch trimmedInput {
     case "inventaire":
@@ -294,5 +286,22 @@ class Game {
         }
     }
     }
+
+    func eventDragon() {
+    guard player.currentRoom == "repaire_du_dragon" else { return }
+
+    if let index = player.inventory.firstIndex(where: { $0.lowercased() == "seringue" }) {
+        print("Tu possèdes une seringue. Prélever du sang de dragon ? (oui/non)")
+        print("> ", terminator: "")
+        if let reponse = readLine()?.lowercased().trimmingCharacters(in: .whitespacesAndNewlines), reponse == "oui" {
+            player.inventory.remove(at: index)
+            player.inventory.append("sang de dragon")
+            print("Tu prélèves avec précaution un peu de sang de dragon encore chaud... Tu obtiens du sang de dragon.")
+        } else {
+            print("Tu choisis de ne rien faire... pour le moment.")
+        }
+    }
+    }
+
 
 }
