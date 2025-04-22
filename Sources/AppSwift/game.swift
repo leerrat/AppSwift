@@ -6,7 +6,7 @@ class Game {
     var rooms: [String: Room] = [:]
     var visitedRooms: Set<String> = []
 
-
+    //initialise avec un nouveau joueur
     init(playerName: String) {
         self.player = Player(name: playerName, currentRoom: "start", inventory: [])
         loadWorld()
@@ -16,7 +16,7 @@ class Game {
     self.player = joueur
     loadWorld()
 }
-
+    //charge les données des salles et des pnj
     func loadWorld() {
         let path = FileManager.default.currentDirectoryPath + "/ressources/world.json"
         let url = URL(fileURLWithPath: path)
@@ -36,14 +36,14 @@ class Game {
             print("Erreur chargement personnages : \(error)")
         }
     }
-
+    //lance le jeu
     func start() {
         print("\nBienvenue, \(player.name) !\n")
         print("Réunis tous les objets magiques pour devenir le maître des lieux !!!\n")
         visitedRooms.insert(player.currentRoom)
         loop()
     }
-
+    //loop du jeu
     func loop() {
         while true {
             showCurrentRoom()
@@ -52,7 +52,7 @@ class Game {
             handleCommand(input)
         }
     }
-
+    //affiche la salle actuelle
     func showCurrentRoom() {
     guard let room = rooms[player.currentRoom] else { return }
 
@@ -82,10 +82,10 @@ class Game {
             print("Personnage présent : \(noms.joined(separator: ", "))")
         }
     }
-
+    
     checkSpecialEvents(for: player.currentRoom)
     }
-
+    //fonction switch avec tout les evenements du jeu
     func checkSpecialEvents(for roomID: String) {
         switch roomID {
         case "bibliotheque":
@@ -152,7 +152,7 @@ class Game {
     }
     print("\(pnj.name) : « \(option.reponse) »")
 }
-
+    //traitement des commandes joueurs
     func handleCommand(_ input: String) {
     let trimmedInput = input.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
 
@@ -224,7 +224,7 @@ class Game {
         visitedRooms.insert(nextRoomID)
     }
 
-
+    //fonction pour prendre objet
     func take(item: String) {
         guard var room = rooms[player.currentRoom] else {
             print("Erreur interne : salle introuvable.")
@@ -241,7 +241,7 @@ class Game {
             print("Cet objet n'est pas ici.")
         }
     }
-
+    //sauvegarde dans le fichier json
     func saveProgress() {
         let savePath = FileManager.default.currentDirectoryPath + "/ressources/save.json"
         do {
